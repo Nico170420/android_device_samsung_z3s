@@ -40,11 +40,13 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a15
 
 TARGET_USES_64_BIT_BINDER := true
 
-TARGET_CPU_SMP := true
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
+# For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # File systems
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -129,7 +131,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 25500
-TW_DEFAULT_BRIGHTNESS := 12250
+TW_DEFAULT_BRIGHTNESS := 12750
 TW_Y_OFFSET := 100
 TW_H_OFFSET := -100
 TW_NO_REBOOT_BOOTLOADER := true
@@ -144,3 +146,45 @@ TW_NO_LEGACY_PROPS := true
 TW_NO_BIND_SYSTEM := true
 TWRP_INCLUDE_LOGCAT := true
 TW_USE_SAMSUNG_HAPTICS := true
+
+# LZMA Compression
+LZMA_COMPRESSION := -9
+LZMA_RAMDISK_TARGETS := recovery
+
+# Shrp Mandatory flags
+SHRP_PATH := $(DEVICE_PATH)
+SHRP_DEVICE_CODE := z3s
+SHRP_MAINTAINER := UnBeyondTeam
+SHRP_REC_TYPE := normal
+SHRP_DEVICE_TYPE := A_Only
+SHRP_REC := /dev/block/platform/13100000.ufs/by-name/recovery
+
+# Shrp Important flags
+SHRP_EDL_MODE := 0
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /external_sd
+SHRP_OTG := /usb_otg
+SHRP_FLASH := 1
+
+# Optional flags
+SHRP_STATUSBAR_RIGHT_PADDING := 40
+SHRP_STATUSBAR_LEFT_PADDING := 40
+SHRP_NOTCH := true
+SHRP_EXPRESS := true
+SHRP_EXPRESS_USE_DATA := true
+SHRP_DARK := true
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash
+
+# Other flags
+SHRP_ALT_REBOOT := true
+SHRP_SKIP_DEFAULT_ADDON_1 := true
+
+# Custom addons
+SHRP_EXTERNAL_ADDON_PATH := "$(DEVICE_PATH)/addons/"
+SHRP_EXTERNAL_ADDON_1_NAME := "Bootlogo patcher"
+SHRP_EXTERNAL_ADDON_1_INFO := "Disable bootlogo warnings - exynos only"
+SHRP_EXTERNAL_ADDON_1_FILENAME := "TWRP_Bootlogo_patcher_v1.7.zip"
+SHRP_EXTERNAL_ADDON_1_BTN_TEXT := "Patch now"
+SHRP_EXTERNAL_ADDON_1_SUCCESSFUL_TEXT := "Successfuly patched"
+SHRP_INC_IN_REC_EXTERNAL_ADDON_1 := true
